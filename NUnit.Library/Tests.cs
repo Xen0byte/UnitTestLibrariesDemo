@@ -33,6 +33,22 @@ public class Tests
         Assert.That(TransientIdentifier, Is.Not.EqualTo(Guid.Empty));
     }
 
+    [Test]
+    [TestCase("one", "two")]
+    public void TestWithDataAndCompositeAssertion(string first, string second)
+    {
+        Debug.WriteLine($"[DEBUG] {MethodBase.GetCurrentMethod()?.DeclaringType}:{MethodBase.GetCurrentMethod()?.Name}");
+
+        Assert.Multiple(() =>
+        {
+            const string one = "one";
+            const string two = "two";
+
+            Assert.That(first, Is.EqualTo(one));
+            Assert.That(second, Is.EqualTo(two));
+        });
+    }
+
     [OneTimeTearDown]
     public void OneTimeTearDown()
     {

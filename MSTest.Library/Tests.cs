@@ -34,6 +34,19 @@ public class Tests
     }
 
     [TestMethod]
+    [DataRow("one", "two")]
+    public void TestWithDataAndCompositeAssertion(string first, string second)
+    {
+        Debug.WriteLine($"[DEBUG] {MethodBase.GetCurrentMethod()?.DeclaringType}:{MethodBase.GetCurrentMethod()?.Name}");
+
+        Assert.That.AllAreTrue
+        (
+            () => { const string one = "one"; Assert.AreEqual(one, first); },
+            () => { const string two = "two"; Assert.AreEqual(two, second); }
+        );
+    }
+
+    [TestMethod]
     public void IdentifierTestTwo()
     {
         Debug.WriteLine($"[DEBUG] {MethodBase.GetCurrentMethod()?.DeclaringType}:{MethodBase.GetCurrentMethod()?.Name}");

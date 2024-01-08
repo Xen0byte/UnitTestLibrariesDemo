@@ -7,11 +7,14 @@ public class Tests : IDisposable, IClassFixture<TestsFixture>
 
     private ITestOutputHelper Output { get; }
 
+    private TestsFixture TestsFixture { get; }
+
     // xUnit Uses The Class Constructor For The Test Class Setup
-    public Tests(ITestOutputHelper output)
+    public Tests(ITestOutputHelper output, TestsFixture testsFixture)
     {
         Debug.WriteLine($"[DEBUG] {MethodBase.GetCurrentMethod()?.DeclaringType}:{MethodBase.GetCurrentMethod()?.Name}");
         Output = output;
+        TestsFixture = testsFixture;
     }
 
     [Fact]
@@ -28,6 +31,19 @@ public class Tests : IDisposable, IClassFixture<TestsFixture>
         Debug.WriteLine($"[DEBUG] {MethodBase.GetCurrentMethod()?.DeclaringType}:{MethodBase.GetCurrentMethod()?.Name}");
         Output.WriteLine(TransientIdentifier.ToString());
         Assert.NotEqual(Guid.Empty, TransientIdentifier);
+    }
+
+    [Theory]
+    [InlineData("one", "two")]
+    public void TestWithDataAndCompositeAssertion(string first, string second)
+    {
+        Debug.WriteLine($"[DEBUG] {MethodBase.GetCurrentMethod()?.DeclaringType}:{MethodBase.GetCurrentMethod()?.Name}");
+
+        Assert.Multiple
+        (
+            () => { const string one = "one"; Assert.Equal(one, first); },
+            () => { const string two = "two"; Assert.Equal(two, second); }
+        );
     }
 
     // xUnit Implements IDisposable And Uses Dispose() For The Test Class Tear-Down
