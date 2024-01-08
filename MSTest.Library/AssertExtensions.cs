@@ -8,11 +8,11 @@ public static class AssertExtensions
 
         List<Exception> exceptions = [];
 
-        foreach (Action action in assertions)
+        foreach (Action assertion in assertions)
         {
             try
             {
-                action.Invoke();
+                assertion.Invoke();
             }
 
             catch (Exception exception)

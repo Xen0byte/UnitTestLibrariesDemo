@@ -6,12 +6,12 @@ public class Tests
     private Guid TransientIdentifier { get; } = Guid.NewGuid();
 
     [OneTimeSetUp]
-    public void OneTimeSetUp()
+    public static void OneTimeSetUp()
     {
         Debug.WriteLine($"[DEBUG] {MethodBase.GetCurrentMethod()?.DeclaringType}:{MethodBase.GetCurrentMethod()?.Name}");
     }
 
-    [OneTimeSetUp]
+    [SetUp]
     public void SetUp()
     {
         Debug.WriteLine($"[DEBUG] {MethodBase.GetCurrentMethod()?.DeclaringType}:{MethodBase.GetCurrentMethod()?.Name}");
@@ -49,14 +49,14 @@ public class Tests
         });
     }
 
-    [OneTimeTearDown]
-    public void OneTimeTearDown()
+    [TearDown]
+    public void TearDown()
     {
         Debug.WriteLine($"[DEBUG] {MethodBase.GetCurrentMethod()?.DeclaringType}:{MethodBase.GetCurrentMethod()?.Name}");
     }
 
-    [TearDown]
-    public void TearDown()
+    [OneTimeTearDown]
+    public static void OneTimeTearDown()
     {
         Debug.WriteLine($"[DEBUG] {MethodBase.GetCurrentMethod()?.DeclaringType}:{MethodBase.GetCurrentMethod()?.Name}");
     }
