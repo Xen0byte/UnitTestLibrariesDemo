@@ -1,7 +1,7 @@
 namespace xUnit.Library;
 
 // xUnit Does Not Require An Attribute For A Test Class
-public class Tests : IDisposable, IClassFixture<TestsFixture>
+public class Tests : IDisposable /* or IAsyncLifetime for asynchronous setup and tear-down */, IClassFixture<TestsFixture>
 {
     private Guid TransientIdentifier { get; } = Guid.NewGuid();
 
