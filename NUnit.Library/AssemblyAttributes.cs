@@ -7,7 +7,7 @@
 // [assembly: Parallelizable(ParallelScope.Fixtures)]
 
 // The Maximum Number Of Logical Processors To Use When Running Tests In Parallel
-// If It Is Not Specified, NUnit Uses The Logical Processor Count Or "2", Whichever Is Greater
+// If Not Specified, NUnit Uses The Logical Processor Count Or "2", Whichever Is Greater
 // A Value Of "0" Represents The Default
 // Uncomment This Attribute To Override The Default
 // [assembly: LevelOfParallelism(0)]
