@@ -5,9 +5,22 @@ public class Tests
 {
     private Guid TransientIdentifier { get; } = Guid.NewGuid();
 
+    [OneTimeSetUp]
+    public void OneTimeSetUp()
+    {
+        Debug.WriteLine($"[DEBUG] {MethodBase.GetCurrentMethod()?.DeclaringType}:{MethodBase.GetCurrentMethod()?.Name}");
+    }
+
+    [OneTimeSetUp]
+    public void SetUp()
+    {
+        Debug.WriteLine($"[DEBUG] {MethodBase.GetCurrentMethod()?.DeclaringType}:{MethodBase.GetCurrentMethod()?.Name}");
+    }
+
     [Test]
     public void IdentifierTestOne()
     {
+        Debug.WriteLine($"[DEBUG] {MethodBase.GetCurrentMethod()?.DeclaringType}:{MethodBase.GetCurrentMethod()?.Name}");
         TestContext.WriteLine(TransientIdentifier);
         Assert.That(TransientIdentifier, Is.Not.EqualTo(Guid.Empty));
     }
@@ -15,7 +28,20 @@ public class Tests
     [Test]
     public void IdentifierTestTwo()
     {
+        Debug.WriteLine($"[DEBUG] {MethodBase.GetCurrentMethod()?.DeclaringType}:{MethodBase.GetCurrentMethod()?.Name}");
         TestContext.WriteLine(TransientIdentifier);
         Assert.That(TransientIdentifier, Is.Not.EqualTo(Guid.Empty));
+    }
+
+    [OneTimeTearDown]
+    public void OneTimeTearDown()
+    {
+        Debug.WriteLine($"[DEBUG] {MethodBase.GetCurrentMethod()?.DeclaringType}:{MethodBase.GetCurrentMethod()?.Name}");
+    }
+
+    [TearDown]
+    public void TearDown()
+    {
+        Debug.WriteLine($"[DEBUG] {MethodBase.GetCurrentMethod()?.DeclaringType}:{MethodBase.GetCurrentMethod()?.Name}");
     }
 }
