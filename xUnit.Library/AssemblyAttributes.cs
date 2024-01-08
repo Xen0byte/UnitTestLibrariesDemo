@@ -1,4 +1,8 @@
-﻿// Parallelisation In xUnit Is Disabled By Default
+﻿/*
+ *  THESE ATTRIBUTES ARE COMMENTED FOR THE PURPOSE OF SHOWCASING THE DEFAULT BEHAVIOUR OF THE LIBRARY
+ */
+
+// Parallelisation In xUnit Is Disabled By Default
 // Uncomment This Attribute To Enable Parallelisation
 // [assembly: CollectionBehavior(DisableTestParallelization = false)]
 
