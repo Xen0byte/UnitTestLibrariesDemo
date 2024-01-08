@@ -1,10 +1,21 @@
 namespace NUnit.Library;
 
+[TestFixture]
 public class Tests
 {
-    [SetUp]
-    public void Setup() { }
+    private Guid TransientIdentifier { get; } = Guid.NewGuid();
 
     [Test]
-    public void Test1() { Assert.Pass(); }
+    public void IdentifierTestOne()
+    {
+        TestContext.WriteLine(TransientIdentifier);
+        Assert.That(TransientIdentifier, Is.Not.EqualTo(Guid.Empty));
+    }
+
+    [Test]
+    public void IdentifierTestTwo()
+    {
+        TestContext.WriteLine(TransientIdentifier);
+        Assert.That(TransientIdentifier, Is.Not.EqualTo(Guid.Empty));
+    }
 }
